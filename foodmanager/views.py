@@ -14,7 +14,11 @@ def schedule(request):
     return render(request, 'foodmanager/schedule.html')
 
 def menu(request):
-    return render(request, 'foodmanager/menu.html')
+    data = Menu.objects.all()
+    params = {
+        'data': data,
+    }
+    return render(request, 'foodmanager/menu.html', params)
 
 def stock(request):
     return render(request, 'foodmanager/stock.html')
@@ -22,7 +26,8 @@ def stock(request):
 def shopping_list(request):
     return render(request, 'foodmanager/shopping_list.html')
 
-def recipe(request):
+def recipe(request,num):
+
     return render(request, 'foodmanager/recipe.html')
 
 def customize(request):
