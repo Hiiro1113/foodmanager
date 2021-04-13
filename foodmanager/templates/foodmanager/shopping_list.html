@@ -1,0 +1,29 @@
+{% extends 'foodmanager/layout.html' %}
+
+{% block title %}Shopping_list{% endblock %}
+
+{% block header %}
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Navbar content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'schedule' %}">
+              ホーム
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'stock' %}">
+              在庫
+            </a>
+          </li>
+        </ul>
+      </div>
+  </nav>  
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'foodmanager/layout.html' %}
+
+{% block title %}Recipe{% endblock %}
+
+{% block header %}
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <!-- Navbar content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'schedule' %}">
+              ホーム
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'menu' %}">
+              メニュー一覧
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'customize' %}">
+              編集（カスタマイズのみ）
+            </a>
+          </li>
+        </ul>
+      </div>
+  </nav>  
+
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
