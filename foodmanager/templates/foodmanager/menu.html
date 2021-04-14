@@ -25,5 +25,12 @@
 
 
 {% block content %}
-{{menu}}
+{% for item in data %}
+<div>
+<img src="">
+<a href="{% url 'recipe' item.menu_CD %}">{{item.menu_name }}</a> 
+{{item.menu_price}}
+<br>
+</div>
+{% endfor %}
 {% endblock %}

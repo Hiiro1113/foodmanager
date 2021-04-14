@@ -27,8 +27,11 @@ def shopping_list(request):
     return render(request, 'foodmanager/shopping_list.html')
 
 def recipe(request,num):
-
-    return render(request, 'foodmanager/recipe.html')
+    data = Use_food.objects.select_related('menu').get(menu_CD=num)
+    params = {
+        'data': data,
+    }
+    return render(request, 'foodmanager/recipe.html', params)
 
 def customize(request):
     return render(request, 'foodmanager/customize.html')
