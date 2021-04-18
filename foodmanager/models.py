@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from album.models import Image
 
 #スケジュールクラス
 class Schedule(models.Model):
@@ -60,6 +60,7 @@ class Menu(models.Model):
     group = models.CharField(max_length=3)
     share = models.CharField(max_length=3)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.menu_name
