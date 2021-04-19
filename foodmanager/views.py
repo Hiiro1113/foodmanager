@@ -10,11 +10,14 @@ from album.forms import ImageForm
 from album.views import showall
 
 # Create your views here.
-def top(request):
-    return render(request, 'foodmanager/top.html')
-
-def schedule(request):
-    return render(request, 'foodmanager/schedule.html')
+def schedule(request, num=1):
+    data = Schedule.objects.all()
+    page = Paginator(data, 21)
+    params = {
+        'data': data,
+        'data': page.get_page(num),
+    }
+    return render(request, 'foodmanager/schedule.html', params)
 
 def menu(request):
     data = Menu.objects.all()

@@ -10,7 +10,7 @@ class Schedule(models.Model):
     menu_CD = models.ForeignKey('Menu', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_id
+        return self.user_id.user_name
 
     class Meta:
         verbose_name = 'スケジュール'

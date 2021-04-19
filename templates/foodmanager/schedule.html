@@ -64,5 +64,18 @@
 
 
 {% block content %}
-
+<table class="table">
+  <tr>
+    <th>日付</th>
+    <th>朝</th>
+    <th>昼</th>
+    <th>夜</th>
+  </tr>
+{% for item in data %}
+  <tr>
+    <td>{{item.date}}{{item.timing}}</td>
+    <td>{{item.menu_CD.menu_name}}</td>
+  </tr>
+{% endfor %}
+</table>
 {% endblock %}
