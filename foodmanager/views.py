@@ -5,6 +5,9 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 from .models import Schedule,Shopping_list,Stock,Stock_history,Food,Menu,Use_food,Recipe
+from album.models import Image
+from album.forms import ImageForm
+from album.views import showall
 
 # Create your views here.
 def top(request):
@@ -27,10 +30,16 @@ def shopping_list(request):
     return render(request, 'foodmanager/shopping_list.html')
 
 def recipe(request,num):
-    data = Use_food.objects.select_related('menu').get(menu_CD=num)
+    menu_data = Use_food.objects.select_related('menu_CD').filter(menu_CD=num)
+
+    foods_data = Use_food.objects.select_related('food_CD').filter(menu_CD=num)
     params = {
-        'data': data,
+        'menu_data': menu_data,
+        'foods_data': foods_data,
     }
+
+    showall(request)
+
     return render(request, 'foodmanager/recipe.html', params)
 
 def customize(request):

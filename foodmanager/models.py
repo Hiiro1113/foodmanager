@@ -61,7 +61,6 @@ class Menu(models.Model):
     share = models.CharField(max_length=3)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
     def __str__(self):
         return self.menu_name
 
@@ -90,10 +89,10 @@ class Recipe(models.Model):
 class Use_food(models.Model):
     menu_CD = models.ForeignKey('Menu', on_delete=models.CASCADE)
     food_CD = models.ForeignKey('Food', on_delete=models.CASCADE)
-    use_quantity = models.IntegerField(default=0)
+    use_quantity = models.FloatField(default=1.0)
 
     def __str__(self):
-        return self.food_CD
+        return self.food_CD.food_name
 
 
     class Meta:

@@ -30,5 +30,30 @@
 
 
 {% block content %}
-{{data.menu.menu_name}}
+
+{% for image in images %}
+    <img src='{{ MEDIA_URL }}{{image.picture}}' width=200>
+    <h2>{{ image.title }}</h2>
+{% endfor %}
+
+<table border='1'>
+  {% for item in menu_data %}
+  <tr>
+    <td>{{item.menu_CD.menu_name}}</td>
+    <td>{{item.menu_CD.menu_price}}円</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>
+食材
+<table border='1'>
+  {% for item in foods_data %}
+  <tr>
+    <td>{{item.food_CD.food_name}}</td>
+    <td>{{item.food_CD.unit}}</td>
+    <td>{{item.food_CD.price}}円</td>
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}
