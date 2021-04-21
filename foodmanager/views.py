@@ -4,10 +4,8 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
-from .models import Schedule,Shopping_list,Stock,Stock_history,Food,Menu,Use_food,Recipe
-from album.models import Image
-from album.forms import ImageForm
-from album.views import showall
+from .models import Schedule,Shopping_list,Stock,Stock_history,Food,Menu,Use_food,Recipe,Image
+from .forms import ImageForm
 
 # Create your views here.
 def schedule(request, num=1):
@@ -33,17 +31,32 @@ def shopping_list(request):
     return render(request, 'foodmanager/shopping_list.html')
 
 def recipe(request,num):
-    menu_data = Use_food.objects.select_related('menu_CD').filter(menu_CD=num)
+    menu_data = Menu.objects.filter(menu_CD=num)
 
     foods_data = Use_food.objects.select_related('food_CD').filter(menu_CD=num)
     params = {
         'menu_data': menu_data,
         'foods_data': foods_data,
     }
-
-    showall(request)
-
+    
     return render(request, 'foodmanager/recipe.html', params)
 
 def customize(request):
     return render(request, 'foodmanager/customize.html')
+
+def showimage(request, num):
+    image = Image.objects.filter(menu_CD=num)
+    context = {'image':image}
+    return render(request, 'foodmanager/menu.html', context)
+
+def upload(request):
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('foodmanager:menu')
+    else:
+        form = ImageForm()
+
+    context = {'form':form}
+    return render(request, 'foodmanager/customize.html', context)

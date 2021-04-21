@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Schedule,Shopping_list,Stock,Stock_history,Food,Menu,Use_food,Recipe
+from .models import Schedule,Shopping_list,Stock,Stock_history,Food,Menu,Use_food,Recipe,Image
 # Register your models here.
 
 class ScheduleAdmin(admin.ModelAdmin):
@@ -23,6 +23,8 @@ class MenuAdmin(admin.ModelAdmin):
 class Use_foodAdmin(admin.ModelAdmin):
     list_display = ('menu_CD', 'food_CD', 'use_quantity', )
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('picture', 'title',)
 
 
 admin.site.register(Schedule, ScheduleAdmin)
@@ -33,3 +35,4 @@ admin.site.register(Food, FoodAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Use_food, Use_foodAdmin)
 admin.site.register(Recipe)
+admin.site.register(Image, ImageAdmin)

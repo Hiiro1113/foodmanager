@@ -31,16 +31,13 @@
 
 {% block content %}
 
-{% for image in images %}
-    <img src='{{ MEDIA_URL }}{{image.picture}}' width=200>
-    <h2>{{ image.title }}</h2>
-{% endfor %}
+<img src='{{ MEDIA_URL }}{{image.picture}}' width=200>
 
 <table border='1'>
   {% for item in menu_data %}
   <tr>
-    <td>{{item.menu_CD.menu_name}}</td>
-    <td>{{item.menu_CD.menu_price}}円</td>
+    <td>{{item.menu_name}}</td>
+    <td>{{item.menu_price}}円</td>
   </tr>
   {% endfor %}
 </table>
@@ -55,5 +52,11 @@
   </tr>
   {% endfor %}
 </table>
+
+
+<form action="{% url 'schedule' %}" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="献立追加" class="btn btn-primary mt-2">
+</form>
 
 {% endblock %}

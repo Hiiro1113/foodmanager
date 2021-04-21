@@ -26,4 +26,9 @@
 
 {% block content %}
 
+<form enctype="multipart/form-data" action="{% url 'foodmanager:menu' %}" method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="画像アップロード">
+  </form>
 {% endblock %}

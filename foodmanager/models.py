@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from album.models import Image
 
 #スケジュールクラス
 class Schedule(models.Model):
@@ -60,6 +59,7 @@ class Menu(models.Model):
     group = models.CharField(max_length=3)
     share = models.CharField(max_length=3)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    picture = models.ForeignKey('Image', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.menu_name
@@ -133,4 +133,15 @@ class Stock_history(models.Model):
         verbose_name = '在庫履歴'
         verbose_name_plural = '在庫履歴'
 
+#料理画像クラス
+class Image(models.Model):
+    picture = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=50)
 
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = '料理画像'
+        verbose_name_plural = '料理画像'
