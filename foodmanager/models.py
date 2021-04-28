@@ -9,7 +9,7 @@ class Schedule(models.Model):
     menu_CD = models.ForeignKey('Menu', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_id.user_name
+        return self.user_id.username
 
     class Meta:
         verbose_name = 'スケジュール'
@@ -76,7 +76,7 @@ class Recipe(models.Model):
     how_to_make = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.menu_CD
+        return self.menu_CD.menu_name
 
 
     class Meta:

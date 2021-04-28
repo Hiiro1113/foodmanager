@@ -31,16 +31,14 @@
 
 {% block content %}
 
-<img src='{{ MEDIA_URL }}{{image.picture}}' width=200>
-
-<table border='1'>
   {% for item in menu_data %}
   <tr>
-    <td>{{item.menu_name}}</td>
-    <td>{{item.menu_price}}円</td>
+    <img src={{ MEDIA_URL }}{{item.picture.picture}}><br>
+    <br>
+    <th><td>{{item.menu_name}}</td>
+    <td>{{item.menu_price}}円</td></th><br>
   </tr>
   {% endfor %}
-</table>
 <br>
 食材
 <table border='1'>
@@ -48,12 +46,16 @@
   <tr>
     <td>{{item.food_CD.food_name}}</td>
     <td>{{item.food_CD.unit}}</td>
-    <td>{{item.food_CD.price}}円</td>
+    <td>{{item.use_quantity}}</td>
   </tr>
   {% endfor %}
 </table>
-
-
+<br>
+{% for item in data %}
+  <td>{{item.how_to_make}}</td>
+{% endfor %}
+<br>
+<br>
 <form action="{% url 'schedule' %}" method="POST">
   {% csrf_token %}
   <input type="submit" value="献立追加" class="btn btn-primary mt-2">

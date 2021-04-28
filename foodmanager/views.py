@@ -11,14 +11,16 @@ from .forms import ImageForm
 def schedule(request, num=1):
     data = Schedule.objects.all()
     page = Paginator(data, 21)
+    menu_data = Menu.objects.select_related('picture').all()
     params = {
         'data': data,
         'data': page.get_page(num),
+        'menu_data': menu_data
     }
     return render(request, 'foodmanager/schedule.html', params)
 
 def menu(request):
-    data = Menu.objects.all()
+    data = Menu.objects.select_related('picture').all()
     params = {
         'data': data,
     }
@@ -31,12 +33,14 @@ def shopping_list(request):
     return render(request, 'foodmanager/shopping_list.html')
 
 def recipe(request,num):
-    menu_data = Menu.objects.filter(menu_CD=num)
-
+    menu_data = Menu.objects.select_related('picture').filter(menu_CD=num)
     foods_data = Use_food.objects.select_related('food_CD').filter(menu_CD=num)
+    data = Recipe.objects.all().filter(menu_CD=num)
+
     params = {
         'menu_data': menu_data,
         'foods_data': foods_data,
+        'data': data
     }
     
     return render(request, 'foodmanager/recipe.html', params)

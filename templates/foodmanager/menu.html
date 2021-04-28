@@ -26,11 +26,9 @@
 
 {% block content %}
 {% for item in data %}
-<div class="container">
-<img src="{{ MEDIA_URL }}{{image.picture}}" width=200>
-<a href="{% url 'recipe' item.menu_CD %}">{{item.menu_name }}</a> 
-{{item.menu_price}}
-<br>
-</div>
+  <img src={{ MEDIA_URL }}{{ item.picture.picture }}>
+  <a href="{% url 'recipe' item.menu_CD %}">{{item.menu_name}}</a> 
+  {{item.menu_price}}円
+  <br>
 {% endfor %}
 {% endblock %}
