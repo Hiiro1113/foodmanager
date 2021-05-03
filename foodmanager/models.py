@@ -108,7 +108,7 @@ class Stock(models.Model):
     stock_qntty = models.IntegerField()
 
     def __str__(self):
-        return self.food_CD
+        return self.food_CD.food_name
 
     class Meta:
         verbose_name = '在庫'

@@ -71,10 +71,22 @@
     <th>昼</th>
     <th>夜</th>
   </tr>
-{% for item in data %}
+
+{% for item in daylist %}
   <tr>
-    <td>{{item.date}}{{item.timing}}</td><br>
-    <td>{{item.menu_CD.menu_name}}</td><br>
+    {% for val in item %}
+    <td>
+      {% if forloop.counter > 1 %}
+        {% for key, value in val.items %}
+          <a class="menu_link" href="{% url 'recipe' key %}">
+            {{ value }}
+          </a>
+        {% endfor %}
+      {% else %}
+        {{val}}
+      {% endif %}  
+    </td>
+    {% endfor %}
   </tr>
 {% endfor %}
 </table>

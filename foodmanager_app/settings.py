@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'foodmanager',
     'accounts',
     'album',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
